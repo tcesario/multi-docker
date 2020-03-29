@@ -10,11 +10,11 @@ script:
   - docker run -e CI=true tcesario/react-test npm test -- --coverage
 
 after_success:
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker build -t tcesario/multi-client ./client
   - docker build -t tcesario/multi-nginx ./nginx
   - docker build -t tcesario/multi-server ./server
   - docker build -t tcesario/multi-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push tcesario/multi-client
   - docker push tcesario/multi-nginx
   - docker push tcesario/multi-server
