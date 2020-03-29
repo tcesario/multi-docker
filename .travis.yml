@@ -8,7 +8,7 @@ before_install:
 script:
   - docker run -e CI=true tcesario/react-test npm test -- --coverage
 
-after_sucess:
+after_success:
   - docker build -t tcesario/multi-client ./client
   - docker build -t tcesario/multi-nginx ./nginx
   - docker build -t tcesario/multi-server ./server
